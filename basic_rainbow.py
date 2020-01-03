@@ -1,4 +1,4 @@
-# Simple test for NeoPixels on Raspberry Pi
+# Create a shifting rainbow accross a light strip
 
 import time
 import board
@@ -26,13 +26,6 @@ GREEN = (255, 0, 0)
 BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
 OFF = (0, 0, 0)
-
-def colorWipe(color, wait):
-    for i in range(num_pixels):
-        pixels[i] = color
-        time.sleep(wait)
-        pixels.show()
-    time.sleep(0.5)
 
 def wheel(pos):
     # Input a value 0 to 255 to get a color value.
@@ -74,6 +67,7 @@ if __name__ == '__main__':
             rainbow_cycle(0.001)
 
     except KeyboardInterrupt:
-        colorWipe((0, 0, 0), .01)
+        pixels.fill(OFF)
+        pixels.show()
 
 

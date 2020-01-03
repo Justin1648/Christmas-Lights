@@ -1,4 +1,4 @@
-# Simple test for NeoPixels on Raspberry Pi
+# Flash 1 color along the whole LED strip multiple times
 
 import time
 import board
@@ -27,12 +27,14 @@ BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
 OFF = (0, 0, 0)
 
-def colorWipe(color, wait):
-    for i in range(num_pixels):
-        pixels[i] = color
-        time.sleep(wait)
+def flash(color1, color2, iterations, delay)
+    for i in range(iterations):
+        pixels.fill(color1)
         pixels.show()
-    time.sleep(0.5)
+        time.sleep(delay)
+        pixels.fill(color2)
+        pixels.show()
+        time.sleep(delay)
 
 
 #Run Program
@@ -43,18 +45,14 @@ if __name__ == '__main__':
 
         while True:
 
-        # ColorWipe tests
-            print ('Green wipe')
-            colorWipe(GREEN,0.1) #Green wipe
-    
-            print ('Red wipe')
-            colorWipe(RED, 0.1) #Red wipe
-    
-            print ('White wipe')
-            colorWipe(WHITE, 0.1) #Blue wipe
+#Flash red/white 10 times for 0.5 seconds each
+            print ('Flash Red/White')
+            flash(RED, WHITE, 10, .5)
 
+# Flash Green/Off 5 times for 0.5 seconds each
 
     except KeyboardInterrupt:
-        colorWipe((0, 0, 0), .01)
+        pixels.fill(OFF)
+        pixels.show()
 
 

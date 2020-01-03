@@ -1,4 +1,4 @@
-# Simple test for NeoPixels on Raspberry Pi
+# Two color stripe moves from lower to upper number pixels
 
 import time
 import board
@@ -27,14 +27,7 @@ BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
 OFF = (0, 0, 0)
 
-def colorWipe(color, wait):
-    for i in range(num_pixels):
-        pixels[i] = color
-        time.sleep(wait)
-        pixels.show()
-    time.sleep(0.5)
-
-def stripeChase(color1, color2, window, iterations):
+def stripe(color1, color2, window, iterations):
     for start in range(iterations):
         for window_start in range(0, num_pixels, window):
             for i in range(window):
@@ -46,8 +39,6 @@ def stripeChase(color1, color2, window, iterations):
             pixels.show()
             time.sleep(.001)
 
-                
-
 #Run Program
 
 if __name__ == '__main__':
@@ -56,16 +47,17 @@ if __name__ == '__main__':
 
         while True:
 
-        #stripeChase Red/White
+        #stripeChase Red/White (Color1, Color2, length of stripe, iterations)
             print ('Red/White stripe')
-            stripeChase(RED, WHITE, 20, 20)
+            stripe(RED, WHITE, 20, 20)
 
         #stripeChase Red/Green
             print ('Red/Green stripe')
-            stripeChase(RED, GREEN, 20, 20)
+            stripe(RED, GREEN, 20, 20)
 
 
     except KeyboardInterrupt:
-        colorWipe((0, 0, 0), .01)
+        pixels.fill(OFF)
+        pixels.show()
 
 

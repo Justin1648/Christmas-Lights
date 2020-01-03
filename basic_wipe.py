@@ -1,4 +1,4 @@
-# Flash every 3rd light moving from 0 to num_pixels
+# Change the colors in a pixel strip in increasing numerical order.
 
 import time
 import board
@@ -27,17 +27,12 @@ BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
 OFF = (0, 0, 0)
 
-def theater(color, color2, iterations):
-    for j in range(iterations):
-        for q in range(3):
-            for i in range(0, num_pixels, 3):
-                pixels[(i+q)] = color
-                pixels[(i+q-1)] = color2
-                pixels[(i+q-2)] = color2
-            pixels.show()
-            time.sleep(.05)
-                
-            
+# color:  color to change the pixel to.  wait: time between each pixel color change
+def wipe(color, wait):
+    for i in range(num_pixels):
+        pixels[i] = color
+        time.sleep(wait)
+        pixels.show()
 
 #Run Program
 
@@ -47,13 +42,15 @@ if __name__ == '__main__':
 
         while True:
 
-        #theaterChase Red/off
-            print ('Red/off theater')
-            theater(RED, OFF, 20)
-
-        #theaterChase Red/Green
-            print ('Red/Green theater')
-            theater(RED, GREEN, 20)
+        # ColorWipe tests
+            print ('Green wipe')
+            Wipe(GREEN,0.1) #Green wipe
+    
+            print ('Red wipe')
+            Wipe(RED, 0.1) #Red wipe
+    
+            print ('White wipe')
+            Wipe(WHITE, 0.1) #Blue wipe
 
 
     except KeyboardInterrupt:

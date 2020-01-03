@@ -1,4 +1,4 @@
-# Simple test for NeoPixels on Raspberry Pi
+# Change the color of the entire strip at one time
 
 import time
 import board
@@ -26,13 +26,6 @@ GREEN = (255, 0, 0)
 BLUE = (0, 0, 255)
 WHITE = (255, 255, 255)
 OFF = (0, 0, 0)
-
-def colorWipe(color, wait):
-    for i in range(num_pixels):
-        pixels[i] = color
-        time.sleep(wait)
-        pixels.show()
-    time.sleep(0.5)
 
 # Run program
 
@@ -68,6 +61,7 @@ if __name__ == '__main__':
 
 
     except KeyboardInterrupt:
-        colorWipe((0, 0, 0), .01)
+        pixels.fill(OFF)
+        pixels.show()
 
 
